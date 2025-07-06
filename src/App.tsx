@@ -13,20 +13,20 @@ import { getTodos } from './api';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 
 export const App = () => {
-  const dispach = useAppDispatch();
+  const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectTodosLoading);
   const hasError = useAppSelector(selectTodosError);
 
   useEffect(() => {
-    dispach(setLoading(true));
+    dispatch(setLoading(true));
     getTodos()
       .then(todos => {
-        dispach(setTodos(todos));
+        dispatch(setTodos(todos));
       })
       .catch(error => {
-        dispach(setError(error.message));
+        dispatch(setError(error.message));
       });
-  }, [dispach]);
+  }, [dispatch]);
 
   return (
     <>
